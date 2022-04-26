@@ -28,9 +28,9 @@ app.post("/tweets", (req, res) => {
     res.send("Ok"); /* cod 200 */
 });
 
-app.get("/tweets", (red, res) => {
-    if(tweets.length <= 10) res.send(tweets); /* fix ~ all tweets in decrescent order*/
-    else res.send(tweets) /* fix ~ last 10 tweets in decrescent order */
+app.get("/tweets", (req, res) => {
+    if (tweets.length <= 10) res.send([...tweets].reverse()); /* all tweets in decrescent order*/
+    else res.send([...tweets].reverse().splice(0, 10)); /* last 10 tweets in decrescent order */
 });
 
 app.listen(5000, () => {
